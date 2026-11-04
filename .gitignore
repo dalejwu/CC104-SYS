@@ -1,0 +1,8 @@
+# Scratch and visual audit artifacts
+scratch/
+.impeccable/
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+*.log

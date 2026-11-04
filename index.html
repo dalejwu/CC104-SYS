@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mostar city</title>
+  <meta name="description" content="A cinematic three-screen hotel booking and reservation management system for Mostar city." />
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="site-shell">
+    <section class="cinema-scroll" id="cinema" aria-label="Mostar cinematic scroll story">
+      <div class="stage">
+        <div class="world">
+          <img
+            class="scene-img sky-img"
+            src="https://raft-blast-61784561.figma.site/_assets/v11/16b5007d9c93971e26ffe4e0e3e37946f6bd538c.png"
+            alt=""
+            width="1920"
+            height="1080"
+          />
+
+          <header class="site-header" aria-label="Primary navigation">
+            <a class="site-logo" href="#cinema">Bosnia and Herzegovina</a>
+            <nav class="site-nav" aria-label="Main menu">
+              <a href="#cinema" data-scroll-to="0">Sanctuary</a>
+              <a href="#bridge" data-scroll-to="1080">Bridge Wing</a>
+              <a href="#bazaar" data-scroll-to="2240">Bazaar Wing</a>
+              <a href="#suites" data-scroll-to="3600">Suites</a>
+            </nav>
+            <button class="language-switcher" id="open-bookings-header" type="button" aria-label="Book a hotel room">
+              <span id="header-booking-count">Book a Room</span>
+              <span aria-hidden="true">⌄</span>
+            </button>
+          </header>
+
+          <div class="back-stack">
+            <img
+              class="scene-img back-img back-four"
+              src="https://raft-blast-61784561.figma.site/_assets/v11/8a7f8af50e0ce92ec2e228e7b0b4112178c51cf1.png"
+              alt=""
+              width="1920"
+              height="1080"
+            />
+
+            <section class="sights-slider" aria-label="Mostar suites slider">
+              <div class="sights-track">
+                <article
+                  class="sight-card"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Book Stari Most Arch Suite"
+                  data-suite-code="stari-most"
+                  data-rate="240"
+                >
+                  <span class="sight-kicker">Bridge View · €240/nt</span>
+                  <img
+                    class="sight-pin"
+                    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230438_d526b8b6-8a2e-4e3b-9993-3908acae03a7.png"
+                    alt=""
+                    width="67"
+                    height="67"
+                  />
+                  <h3 title="Stari Most Suite">Stari Most Suite</h3>
+                  <p>Private stone terrace overlooking the Neretva arch with breakfast.</p>
+                </article>
+
+                <article
+                  class="sight-card"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Book Kujundziluk Loft"
+                  data-suite-code="kujundziluk"
+                  data-rate="185"
+                >
+                  <span class="sight-kicker">Bazaar Wing · €185/nt</span>
+                  <img
+                    class="sight-pin"
+                    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230442_140bc25b-b165-4249-904a-f708bff6970e.png"
+                    alt=""
+                    width="67"
+                    height="67"
+                  />
+                  <h3 title="Kujundziluk Loft">Kujundziluk Loft</h3>
+                  <p>Artisanal timber loft above the historic copper bazaar lane.</p>
+                </article>
+
+                <article
+                  class="sight-card"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Book Koski Panorama Suite"
+                  data-suite-code="koski-suite"
+                  data-rate="310"
+                >
+                  <span class="sight-kicker">Penthouse · €310/nt</span>
+                  <img
+                    class="sight-pin"
+                    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230448_825949c9-ccdb-4857-b4a6-e349eccc9010.png"
+                    alt=""
+                    width="67"
+                    height="67"
+                  />
+                  <h3 title="Koski Panorama Suite">Koski Panorama Suite</h3>
+                  <p>Top-floor sanctuary with minaret and emerald river views.</p>
+                </article>
+
+                <article
+                  class="sight-card"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Book Kajtaz Courtyard"
+                  data-suite-code="kajtaz-villa"
+                  data-rate="275"
+                >
+                  <span class="sight-kicker">Ottoman Villa · €275/nt</span>
+                  <img
+                    class="sight-pin"
+                    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230438_d526b8b6-8a2e-4e3b-9993-3908acae03a7.png"
+                    alt=""
+                    width="67"
+                    height="67"
+                  />
+                  <h3 title="Kajtaz Courtyard">Kajtaz Courtyard</h3>
+                  <p>Preserved 16th-century residence with walled courtyard garden.</p>
+                </article>
+
+                <article
+                  class="sight-card"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Book Neretva Cliff Studio"
+                  data-suite-code="neretva-studio"
+                  data-rate="150"
+                >
+                  <span class="sight-kicker">Riverfront · €150/nt</span>
+                  <img
+                    class="sight-pin"
+                    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230442_140bc25b-b165-4249-904a-f708bff6970e.png"
+                    alt=""
+                    width="67"
+                    height="67"
+                  />
+                  <h3 title="Neretva Cliff Studio">Neretva Cliff Studio</h3>
+                  <p>Quiet cliffside studio cantilevered above the emerald water.</p>
+                </article>
+              </div>
+            </section>
+
+            <img
+              class="scene-img back-img back-bazaar"
+              src="https://raft-blast-61784561.figma.site/_assets/v11/864afe00e41e2fa20a5aa546e15cb807e0f81384.png"
+              alt=""
+              width="1920"
+              height="1080"
+            />
+          </div>
+
+          <div class="sights-controls" aria-label="Slider controls">
+            <button class="sight-nav sight-prev" type="button" aria-label="Previous sight">←</button>
+            <button class="sight-nav sight-next" type="button" aria-label="Next sight">→</button>
+          </div>
+
+          <h1 class="hero-title">MOSTAR</h1>
+
+          <img
+            class="scene-img splitframe-img splitframe-left"
+            src="https://raft-blast-61784561.figma.site/_assets/v11/7536d7b60a1fce482cf6edf3f0bffd3bad5d0f8a.png"
+            alt=""
+            width="1920"
+            height="1080"
+          />
+
+          <img
+            class="scene-img splitframe-img splitframe-right"
+            src="https://raft-blast-61784561.figma.site/_assets/v11/392db6a6a6b98e868bd7f8d3f55bb719d51e5028.png"
+            alt=""
+            width="1920"
+            height="1080"
+          />
+
+          <img
+            class="scene-img bridge-img"
+            src="https://raft-blast-61784561.figma.site/_assets/v11/c6a6d8ef49bca43f708aa852692942c45ec950d4.png"
+            alt=""
+            width="1920"
+            height="1080"
+          />
+
+          <img
+            class="scene-img frame-two-img"
+            src="https://raft-blast-61784561.figma.site/_assets/v11/ba75252bab2b1c510987b74837770f7bc8a6b2d4.png"
+            alt=""
+            width="1920"
+            height="1080"
+          />
+
+          <div class="shade"></div>
+        </div>
+
+        <section class="intro-copy" aria-label="Mostar overview">
+          <p>A stone arch, emerald water, and five heritage suites made for slow mornings, late light, and effortless room reservations.</p>
+          <div class="hero-tags" aria-label="Mostar highlights">
+            <span>Old Bridge</span>
+            <span>Neretva River</span>
+            <span>UNESCO old city</span>
+          </div>
+        </section>
+
+        <section class="story-panel story-panel-bridge" aria-label="Old Bridge details">
+          <h2>Sleep beside the city's compass.</h2>
+          <p>Our riverfront chambers link the banks of the Neretva with private stone loggias shaped by Ottoman, Mediterranean, and European craft.</p>
+          <dl class="facts">
+            <div>
+              <dt>05</dt>
+              <dd>Restored riverfront sanctuaries</dd>
+            </div>
+            <div>
+              <dt>1566</dt>
+              <dd>Historic Stari Most view line</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="story-panel story-panel-bazaar" aria-label="Old town details">
+          <h2>Your sanctuary above the river.</h2>
+          <p>Reserve handcrafted chambers above the Neretva, customize your stay details, and experience authentic Mostar hospitality.</p>
+          <button class="note-button" id="open-crud-panel-btn" type="button" aria-label="Open Guest Sanctuary Portal">
+            <span aria-hidden="true">↗</span>
+            <span>Reserve a Sanctuary Suite</span>
+          </button>
+        </section>
+
+        <aside class="crud-backdrop" id="crud-backdrop" aria-hidden="true">
+          <section class="crud-modal" role="dialog" aria-modal="true" aria-labelledby="crud-modal-title" aria-label="Guest Sanctuary Portal">
+            <header class="crud-header">
+              <div>
+                <p class="crud-subtitle">HERITAGE STAYS · GUEST PORTAL</p>
+                <h2 id="crud-modal-title">Reserve Your Stay</h2>
+              </div>
+              <div class="guest-header-actions">
+                <div class="guest-tabs" role="tablist" aria-label="Guest portal navigation">
+                  <button class="guest-tab is-active" id="tab-book-btn" type="button" role="tab" aria-selected="true" aria-controls="view-book-room">Book a Room</button>
+                  <button class="guest-tab" id="tab-manage-btn" type="button" role="tab" aria-selected="false" aria-controls="view-my-bookings">My Bookings (<span id="guest-booking-count">0</span>)</button>
+                </div>
+                <button class="crud-close" id="crud-close-btn" type="button" aria-label="Close guest sanctuary portal">×</button>
+              </div>
+            </header>
+
+            <div class="crud-body">
+              <!-- TAB 1: BOOK A ROOM (Strict View Isolation: Form + Suite Preview Card) -->
+              <div class="tab-view is-active" id="view-book-room" role="tabpanel" aria-labelledby="tab-book-btn">
+                <div class="book-grid">
+                  <div class="book-col-form">
+                    <form class="crud-form" id="booking-form" novalidate>
+                      <input id="booking-id" name="id" type="hidden" value="" />
+                      <input id="booking-status" name="status" type="hidden" value="Confirmed" />
+                      <h3 class="crud-section-title" id="form-mode-title">Reserve Your Suite</h3>
+
+                      <label class="crud-field" for="guest-name">
+                        <span>Guest Full Name</span>
+                        <input id="guest-name" name="guest_name" type="text" required maxlength="120" placeholder="e.g. Elena Kovačević" />
+                      </label>
+
+                      <label class="crud-field" for="guest-email">
+                        <span>Guest Email Address</span>
+                        <input id="guest-email" name="guest_email" type="email" required maxlength="160" placeholder="elena@adriatic.hr" />
+                      </label>
+
+                      <label class="crud-field" for="suite-select">
+                        <span>Select Heritage Suite</span>
+                        <select id="suite-select" name="suite_code" required>
+                          <option value="stari-most" data-rate="240">Stari Most Suite (€240/nt)</option>
+                          <option value="kujundziluk" data-rate="185">Kujundziluk Loft (€185/nt)</option>
+                          <option value="koski-suite" data-rate="310">Koski Panorama Suite (€310/nt)</option>
+                          <option value="kajtaz-villa" data-rate="275">Kajtaz Courtyard (€275/nt)</option>
+                          <option value="neretva-studio" data-rate="150">Neretva Cliff Studio (€150/nt)</option>
+                        </select>
+                      </label>
+
+                      <div class="crud-row">
+                        <label class="crud-field" for="check-in">
+                          <span>Check-In</span>
+                          <input id="check-in" name="check_in" type="date" required />
+                        </label>
+                        <label class="crud-field" for="check-out">
+                          <span>Check-Out</span>
+                          <input id="check-out" name="check_out" type="date" required />
+                        </label>
+                      </div>
+
+                      <div class="crud-row">
+                        <label class="crud-field" for="guest-count">
+                          <span>Guests</span>
+                          <input id="guest-count" name="guests" type="number" min="1" max="6" value="2" required />
+                        </label>
+                      </div>
+
+                      <label class="crud-field" for="guest-notes">
+                        <span>Special Requests (Optional)</span>
+                        <input id="guest-notes" name="special_requests" type="text" maxlength="255" placeholder="River terrace table, late check-in, dietary..." />
+                      </label>
+
+                      <!-- Interactive Billing Line Items -->
+                      <div class="billing-breakdown" id="billing-breakdown">
+                        <div class="billing-line">
+                          <span id="billing-base-desc">2 nights × €240.00</span>
+                          <span class="tabular" id="billing-base-sum">€480.00</span>
+                        </div>
+                        <div class="billing-line">
+                          <span>City tourist tax & eco surcharge</span>
+                          <span class="tabular" id="billing-tax-sum">€8.00</span>
+                        </div>
+                        <div class="billing-line">
+                          <span>Artisan riverside breakfast & tea</span>
+                          <span class="tabular billing-free">Complimentary</span>
+                        </div>
+                        <div class="billing-divider"></div>
+                        <div class="billing-line billing-total">
+                          <span>Total Stay Investment</span>
+                          <span class="tabular" id="billing-total-sum">€488.00</span>
+                        </div>
+                      </div>
+
+                      <div class="crud-feedback" id="crud-feedback" role="status" aria-live="polite" hidden></div>
+
+                      <div class="crud-form-actions">
+                        <button class="crud-submit" id="crud-submit-btn" type="submit">Confirm Suite Reservation</button>
+                        <button class="crud-reset" id="crud-cancel-edit" type="button" hidden>Cancel Edit</button>
+                      </div>
+                    </form>
+                  </div>
+
+                  <!-- Suite Live Preview Card -->
+                  <div class="book-col-preview">
+                    <div class="suite-preview-card" id="suite-preview-card">
+                      <div class="preview-badge-row">
+                        <span class="preview-kicker" id="preview-kicker">Bridge View · €240/nt</span>
+                        <span class="preview-capacity" id="preview-capacity">Max 4 Guests</span>
+                      </div>
+                      <div class="preview-header">
+                        <h4 class="preview-title" id="preview-title">Stari Most Suite</h4>
+                        <img class="preview-pin" id="preview-pin" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260730_230438_d526b8b6-8a2e-4e3b-9993-3908acae03a7.png" alt="" width="60" height="60" />
+                      </div>
+                      <p class="preview-desc" id="preview-desc">Private stone terrace overlooking the Neretva arch with artisan breakfast included.</p>
+                      
+                      <div class="preview-perks-title">Signature Suite Inclusions</div>
+                      <ul class="preview-perks" id="preview-perks">
+                        <li>Direct Neretva arch panoramas</li>
+                        <li>Ottoman stonework & private loggia</li>
+                        <li>Complimentary artisan riverside breakfast</li>
+                      </ul>
+
+                      <div class="preview-pricing-callout">
+                        <span class="callout-label">Direct Guest Rate</span>
+                        <span class="callout-val tabular" id="preview-rate">€240.00 / night</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 2: MY BOOKINGS (Strict View Isolation: Full Modal Width) -->
+              <div class="tab-view" id="view-my-bookings" role="tabpanel" aria-labelledby="tab-manage-btn" hidden>
+                <div class="bookings-full-view">
+                  <div class="crud-toolbar">
+                    <input
+                      class="crud-search"
+                      id="booking-search"
+                      type="search"
+                      aria-label="Search my reservations"
+                      placeholder="Search reservations by suite, date, or reference code..."
+                    />
+                    <select class="crud-filter" id="booking-filter" aria-label="Filter status">
+                      <option value="All">All Stays</option>
+                      <option value="Confirmed">Confirmed</option>
+                      <option value="Checked-In">Checked-In</option>
+                      <option value="Pending">Pending</option>
+                    </select>
+                    <span class="crud-stats" id="booking-stats">0 stays</span>
+                  </div>
+
+                  <div class="crud-list" id="booking-list" aria-live="polite">
+                    <!-- Populated by JS -->
+                  </div>
+
+                  <!-- Empty State with Action Chip to flip back -->
+                  <div class="bookings-empty-state" id="bookings-empty-state" hidden>
+                    <svg class="empty-illustration" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 38h36M10 38V24c0-7.732 6.268-14 14-14s14 6.268 14 14v14" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M18 38V27a6 6 0 0 1 12 0v11" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h4 class="empty-title" id="empty-title">No Stays Reserved Yet</h4>
+                    <p class="empty-desc" id="empty-desc">Reserve your sanctuary above the Neretva to begin your heritage stay.</p>
+                    <button class="empty-action-btn" id="empty-book-btn" type="button">Book a Suite</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Standalone Receipt Confirmation Modal Card (Fades in when Guest Room Booking fades away) -->
+          <div class="booking-receipt-card" id="booking-receipt-card" role="dialog" aria-modal="true" aria-labelledby="receipt-card-title" hidden>
+            <div class="receipt-badge">Booking Confirmed</div>
+            <h3 class="receipt-title" id="receipt-card-title">Your Mostar Stay Is Reserved</h3>
+            <p class="receipt-msg" id="receipt-msg">We are preparing your suite above the Neretva.</p>
+
+            <div class="receipt-code-box">
+              <span class="receipt-code-label">Reservation Reference</span>
+              <div class="receipt-code-row">
+                <strong class="receipt-code tabular" id="receipt-ref-code">MST-7821</strong>
+                <button class="receipt-copy-btn" id="receipt-copy-btn" type="button" aria-label="Copy reference code">
+                  <span class="copy-label">Copy Code</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="receipt-details" id="receipt-details">
+              <!-- Populated by JS -->
+            </div>
+
+            <div class="receipt-actions">
+              <button class="receipt-view-btn" id="receipt-view-bookings-btn" type="button">View in My Bookings</button>
+              <button class="receipt-book-btn" id="receipt-book-another-btn" type="button">Book Another Suite</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

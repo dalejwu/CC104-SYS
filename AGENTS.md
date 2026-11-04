@@ -1,0 +1,113 @@
+# AGENTS.md
+
+Instructions, operating rules, and skill mappings for AI agents (Codex, Antigravity, and compatible harnesses).
+
+---
+
+## 1. Operating Rules (ADHD Mode & Action-First Execution)
+
+- **Lead with Action**: Place the command, file path, diff, or tool call on Line 1. Zero conversational throat-clearing, intro explanations, or restating the prompt.
+- **Numbered Bounded Steps**: Break multi-step work into atomic steps. Maximum one verb/action per step. Zero compound steps (ban "and then", "afterward", "while").
+- **Agent Tool Autonomy**: Inside an agent harness, execute tool calls directly rather than asking permission or instructing the user to run commands manually.
+- **Concrete Time & Scale**: Never use vague qualifiers ("in a bit", "takes a while"). Ballpark in concrete units ("~10 minutes", "2 files").
+- **Visible Wins**: Immediately demonstrate what works and how to verify it (e.g., test commands, curl endpoints).
+- **Neutral Error Reporting**: Report strictly: **Location**, **Cause**, and **Fix**. No emotional padding.
+- **Cap Lists to 5 Items**: Display at most 5 items per group in user-facing output to prevent cognitive overload.
+- **Circuit Breaker (3-Strike Limit)**: After 3 failed attempts to fix the same issue, STOP modifying code and revert to the last working state. Output strictly:
+  1. **Invalid Assumption**: 1 sentence on what failed.
+  2. **Diagnostic Check**: 1 concrete question or a 2-option choice (A/B) to unblock.
+- **Blacklist (Zero Filler)**:
+  - **Forbidden Openers**: "Sure!", "Great question", "Let me...", "I'll...", "Looking at your...", "To answer your question...", "Certainly".
+  - **Forbidden Closers**: "Hope this helps!", "Let me know if you need anything else", "Happy coding!", "Feel free to ask".
+  - **Forbidden Recaps**: Do not narrate what code was just written if the diff or edit already shows it.
+  - **Prune on Send**: Delete hedging adverbs ("perhaps", "might", "could possibly") and idioms.
+
+---
+
+## 2. Design, Architecture & Security: Mandatory Workspace Rule Selection
+
+Read and apply the active workspace's local rules before choosing generic skills:
+
+- **Frontend, UI/UX & Motion**:
+  - **Brand New Web App / Greenfield**: [.agents/rules/starting-brandnew.md](.agents/rules/starting-brandnew.md)
+  - **Existing App / Redesign / Refactor**: [.agents/rules/starting-existing.md](.agents/rules/starting-existing.md)
+  - **Active UI Implementation**: [.agents/rules/frontend.md](.agents/rules/frontend.md)
+  - **Layout & CSS Hygiene**: [.agents/rules/UI_Always.md](.agents/rules/UI_Always.md)
+  - **Motion, Physics & Micro-Interactions**: [.agents/rules/MOTION.md](.agents/rules/MOTION.md) (and [.agents/skills/3d-web-experience/SKILL.md](.agents/skills/3d-web-experience/SKILL.md) for 3D/WebGL)
+- **Backend, Security & QA**:
+  - **Backend Architecture, Data Layer & APIs**: [.agents/rules/backend.md](.agents/rules/backend.md)
+  - **Application Security & Exploit Defense**: [.agents/rules/security.md](.agents/rules/security.md)
+  - **Penetration Testing, Strix & Functional Flow QA**: [.agents/rules/penetrating-and-testing.md](.agents/rules/penetrating-and-testing.md)
+
+---
+
+## 3. Playwright & Browser Verification Policy
+
+Follow [.agents/rules/UI_Always.md](.agents/rules/UI_Always.md#8-browser-verification-policy) for visual and responsive checks:
+
+- **Engine**: Use the bundled [playwright-skill](.agents/skills/playwright-skill/SKILL.md) through inline Node execution from the project root: `node .agents/skills/playwright-skill/run.js -e "..."`. Create no scratch `.js` files for these audits and do not delegate browser verification to subagents.
+- **Target URL**: Resolve the running application through `helpers.resolveTargetUrl()`. Respect a user-provided URL or project configuration; do not guess a port.
+- **Layout Audits**: Check 375px, 768px, and 1280px for accidental horizontal overflow (`document.documentElement.scrollWidth > window.innerWidth`), page exceptions, and console errors.
+- **Artifacts**: Save screenshots and temporary browser diagnostics in the project's git-ignored `scratch/` directory.
+- **Execution Script**: Start with the canonical inline layout audit in `UI_Always.md`.
+
+---
+
+## 4. Subagents & Specialized Roles
+
+Delegate specialized lifecycle tasks to the agents defined under [.agents/agents/](.agents/agents/):
+
+- **Planning & Architecture**:
+  - Implementation Planning: [.agents/agents/planner.md](.agents/agents/planner.md)
+  - Domain & System Architecture: [.agents/agents/code-architect.md](.agents/agents/code-architect.md)
+  - Web Accessibility (WCAG 2.2): [.agents/agents/a11y-architect.md](.agents/agents/a11y-architect.md)
+- **Quality Gates & Failure Hunting**:
+  - Swallowed Exception & Fallback Audits: [.agents/agents/silent-failure-hunter.md](.agents/agents/silent-failure-hunter.md)
+  - Code Simplification & Dead Weight Removal: [.agents/agents/code-simplifier.md](.agents/agents/code-simplifier.md)
+  - Pre-Delivery Verification: [.agents/agents/agent-evaluator.md](.agents/agents/agent-evaluator.md)
+- **Security & Penetration Testing**:
+  - Pre-Commit Security & Invariant Audits: [.agents/agents/security-auditor.md](.agents/agents/security-auditor.md)
+  - Exploit Validation & Penetration QA: [.agents/agents/penetration-tester.md](.agents/agents/penetration-tester.md)
+- **Closed-Loop Build & Error Repair**:
+  - TypeScript & Generic Build Repair: [.agents/agents/build-error-resolver.md](.agents/agents/build-error-resolver.md)
+  - Framework Resolvers: [.agents/agents/react-build-resolver.md](.agents/agents/react-build-resolver.md), [.agents/agents/go-build-resolver.md](.agents/agents/go-build-resolver.md), [.agents/agents/rust-build-resolver.md](.agents/agents/rust-build-resolver.md)
+
+---
+
+## 5. Standard Engineering Lifecycle & Loop Execution
+
+For non-trivial features, refactoring, or multi-file changes, route through the bounded five-stage lifecycle:
+
+1. **Phase 1: Planning & Scope**: Delegate to [.agents/agents/planner.md](.agents/agents/planner.md) (or [.agents/agents/code-architect.md](.agents/agents/code-architect.md) for boundaries) to produce numbered atomic checklists before writing code.
+2. **Phase 2: Test Specification (TDD)**: Delegate to [.agents/agents/tdd-guide.md](.agents/agents/tdd-guide.md) to author failing unit or integration tests verifying invariants before implementation.
+3. **Phase 3: Implementation & Repair**: Implement minimal code to turn tests green; on compiler/type failure, delegate strictly to [.agents/agents/build-error-resolver.md](.agents/agents/build-error-resolver.md) for micro-patches.
+4. **Phase 4: Defensive Audit**: Delegate to [.agents/agents/silent-failure-hunter.md](.agents/agents/silent-failure-hunter.md) for swallowed errors and [.agents/agents/security-auditor.md](.agents/agents/security-auditor.md) for boundary defenses.
+5. **Phase 5: Verification & Gate Evaluation**: Run tests and Playwright audits, then evaluate output completeness with [.agents/agents/agent-evaluator.md](.agents/agents/agent-evaluator.md) and [.agents/skills/agent-self-evaluation/SKILL.md](.agents/skills/agent-self-evaluation/SKILL.md).
+
+<!-- source-repository-only -->
+
+---
+
+## Source Repository Instructions
+
+This section applies only to this collection's source checkout and is excluded from the installed Codex `AGENTS.md`.
+
+### Skills & Installation
+
+For Antigravity, use skills and rules under `.agents/`. For Codex, use converted skills, rules, and resources under `.codex/`. Read a matching skill's `SKILL.md` before using it and load only the supporting files needed for the task. Prefer converted manifests when both edition catalogs contain the same name. A skill does not authorize external actions or configure its external providers.
+
+For requests such as "INSTALL THIS SKILLS REPO HERE", read the source checkout's `INSTALL.md`. If the edition has not already been selected for that installation, ask:
+
+> Which version would you like to install: GPT / CODEX or AGY / GEMINI?
+
+Wait for the answer and reuse an explicit choice already given. Record the absolute target before changing directories. The selected edition determines the payload, including when an AGY assistant installs the Codex edition.
+
+For GPT / CODEX, automatically read and execute the source checkout's `.codex/rules/install.md` within the same request. Run `node tools/codex/install.mjs --target <absolute-project-path> --profile all` from that checkout. It installs the prebuilt bundle, creates or merges the target's root `.gitignore`, sets up local Playwright and Chromium, verifies the runner, and removes only the target's one-time installation rule after success. Preserve existing ignore rules; merge the source bundle's `project.gitignore`, including local `.codex/`, `AGENTS.md`, `scratch/`, `.impeccable/`, and the supplied OS, secrets, editor, dependency, test, cache, and audit rules. Preserve the environment example/template and VS Code exceptions after their exclusions. Keep the source rule; use `--resume` for failed or interrupted setup or to update `.gitignore` in a completed installation. The installed rule's absence after successful setup is expected. Use each skill's setup instructions for later repairs.
+
+For AGY / GEMINI, follow the original payload branch in the source checkout's `INSTALL.md`. Keep the source `.agents/` edition available. Preserve existing target instructions and global policy. Enable optional hooks only when requested and reviewed in the host. Normal installation does not require conversion-tool dependencies, rebuilding, source validation, AGY submodule initialization, or path/hash rewriting.
+
+### Maintaining This Source Collection
+
+Root `AGENTS.md` is the policy source. The builder generates `.codex/AGENTS.md` from the content before `<!-- source-repository-only -->`, and the exporter installs it as the target's root `AGENTS.md`. Edit root `AGENTS.md` directly; do not introduce a separate instruction template.
+
+For requested conversion or maintenance changes, edit the relevant conversion logic or rule templates in `tools/codex/`, install maintenance dependencies if needed, then run `node tools/codex/build.mjs` and `node tools/codex/validate.mjs --source`. The builder generates `.codex/project.gitignore` from root `.gitignore` plus the local Codex entries; the installer merges it into the target's root `.gitignore`. Maintain `.codex/README.md`, `.codex/CONVERSION_REVIEW.md`, and `.codex/profiles.json` directly. Preserve the original AGY files except for changes explicitly requested for that edition or shared installation routing.
